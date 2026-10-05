@@ -387,6 +387,153 @@ html[data-theme="light"] .map-frame{filter:grayscale(.35)}
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* ============================================================
+   MERCADO PAGO — CHECKOUT UNIFICADO
+   ============================================================ */
+.mp-shell{border:1px solid var(--line);background:var(--surface);overflow:hidden;position:relative;border-radius:3px}
+.mp-shell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#009ee3,var(--gold),#009ee3,transparent);opacity:.75;z-index:3}
+.mp-head{padding:22px 26px;border-bottom:1px solid var(--line-soft);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.mp-logo{display:flex;align-items:center;gap:14px}
+.mp-mk{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#00b1ea,#009ee3);
+  display:grid;place-items:center;color:#fff;font-weight:700;font-size:14px;letter-spacing:-.02em;
+  box-shadow:0 8px 22px -8px rgba(0,158,227,.7)}
+.mp-head h4{font-family:var(--ff-display);font-size:22px;font-weight:400;margin-bottom:3px;line-height:1.1}
+.mp-head small{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-2)}
+.mp-secure{display:inline-flex;align-items:center;gap:8px;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ok);white-space:nowrap}
+.mp-secure svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6}
+.mp-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:20px 26px;border-bottom:1px solid var(--line-soft);background:var(--black-2)}
+@media(max-width:640px){.mp-methods{grid-template-columns:1fr;padding:14px}.mp-head{padding:16px 18px}.mp-body{padding:16px}}
+.mp-method{position:relative;padding:18px 12px;border:1px solid var(--line-soft);background:var(--surface);
+  text-align:center;transition:.5s var(--ease);cursor:pointer;border-radius:2px;color:var(--white);overflow:hidden}
+.mp-method:hover{border-color:var(--line);transform:translateY(-2px)}
+.mp-method.on{border-color:var(--gold);background:linear-gradient(160deg,rgba(201,169,97,.12),rgba(201,169,97,.02))}
+.mp-method.on::before{content:'';position:absolute;left:0;top:0;right:0;height:2px;background:var(--gold)}
+.mp-ico{width:32px;height:32px;margin:0 auto 10px;display:grid;place-items:center}
+.mp-ico svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.mp-method b{display:block;font-family:var(--ff-display);font-size:17px;font-weight:400;margin-bottom:4px;letter-spacing:.02em}
+.mp-method small{font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2)}
+.mp-method.on small{color:var(--gold)}
+.mp-body{padding:26px}
+.mp-panel{display:none;animation:mpFade .55s var(--ease)}
+.mp-panel.on{display:block}
+@keyframes mpFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.mp-pix{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
+@media(max-width:760px){.mp-pix{grid-template-columns:1fr;justify-items:center;text-align:center;gap:22px}}
+.mp-qr{width:min(230px,66vw);aspect-ratio:1;background:#fff;padding:12px;border-radius:6px;position:relative;
+  box-shadow:0 20px 44px -20px rgba(0,0,0,.7)}
+.mp-qr img{width:100%;height:100%;object-fit:contain;display:block}
+.mp-qr::before,.mp-qr::after{content:'';position:absolute;width:22px;height:22px;border:2px solid var(--gold)}
+.mp-qr::before{top:-9px;left:-9px;border-right:0;border-bottom:0}
+.mp-qr::after{bottom:-9px;right:-9px;border-left:0;border-top:0}
+.mp-code{font-family:ui-monospace,monospace;font-size:11px;word-break:break-all;color:var(--muted);
+  background:var(--black-2);border:1px solid var(--line-soft);padding:14px;line-height:1.65;
+  max-height:88px;overflow:auto;border-radius:2px}
+.mp-status{display:inline-flex;align-items:center;gap:9px;font-size:10px;letter-spacing:.24em;
+  text-transform:uppercase;padding:9px 16px;border-radius:100px;border:1px solid var(--line-soft);margin-bottom:18px}
+.mp-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--muted)}
+.mp-status.wait{border-color:rgba(217,164,65,.4);color:#d9a441}
+.mp-status.wait::before{background:#d9a441;animation:blink 1.4s infinite}
+.mp-status.ok{border-color:rgba(127,174,138,.4);color:var(--ok)}
+.mp-status.ok::before{background:var(--ok);box-shadow:0 0 12px var(--ok)}
+.mp-steps{display:flex;gap:6px;margin:0 0 18px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2);flex-wrap:wrap}
+.mp-steps i{width:22px;height:1px;background:var(--line-soft);align-self:center;font-style:normal}
+.mp-steps b{color:var(--gold);font-weight:500}
+
+.card-3d{perspective:1200px;margin-bottom:22px}
+.c-body{position:relative;aspect-ratio:1.6/1;max-width:380px;margin:0 auto;border-radius:14px;
+  background:linear-gradient(135deg,#0e0e12 0%,#1a1a20 45%,#08080a 100%);
+  border:1px solid rgba(201,169,97,.24);padding:24px;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.95);overflow:hidden;transition:transform .7s var(--ease)}
+.c-body::before{content:'';position:absolute;top:-40%;right:-20%;width:80%;aspect-ratio:1;
+  background:radial-gradient(circle,rgba(201,169,97,.18),transparent 65%);border-radius:50%}
+.c-body::after{content:'';position:absolute;bottom:-40%;left:-20%;width:70%;aspect-ratio:1;
+  background:radial-gradient(circle,rgba(0,177,234,.10),transparent 65%);border-radius:50%}
+.c-chip{width:42px;height:32px;border-radius:5px;background:linear-gradient(135deg,#e3cf9a,#8f7434);
+  position:relative;margin-bottom:24px}
+.c-chip::before{content:'';position:absolute;inset:6px;border:1px solid rgba(0,0,0,.24);border-radius:3px}
+.c-chip::after{content:'';position:absolute;left:50%;top:6px;bottom:6px;width:1px;background:rgba(0,0,0,.24);transform:translateX(-50%)}
+.c-num{font-family:ui-monospace,monospace;font-size:clamp(15px,2.4vw,19px);letter-spacing:.14em;
+  color:#f4f2ed;position:relative;z-index:1;margin-bottom:22px;text-shadow:0 1px 2px rgba(0,0,0,.5);min-height:22px}
+.c-row{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:1}
+.c-lbl{font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,242,237,.5);margin-bottom:5px}
+.c-val{font-size:11.5px;letter-spacing:.06em;color:#f4f2ed;text-transform:uppercase;min-height:14px}
+.c-brand{position:absolute;top:20px;right:24px;z-index:2;display:flex;gap:6px}
+.c-brand span{height:22px;padding:0 8px;border-radius:4px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);font-size:9px;font-weight:600;letter-spacing:.04em;
+  display:grid;place-items:center;color:rgba(244,242,237,.5);transition:.4s var(--ease)}
+.c-brand span.on{background:linear-gradient(135deg,#e3cf9a,#8f7434);color:#08080a;border-color:transparent}
+
+.mp-field{margin-bottom:16px}
+.mp-field label{display:block;font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:8px;font-weight:500}
+.mp-field input,.mp-field select{width:100%;padding:13px 14px;background:var(--surface-2);
+  border:1px solid var(--line-soft);border-radius:2px;font-size:14px;font-weight:300;color:var(--white);
+  transition:.4s var(--ease);font-family:inherit}
+.mp-field input:focus,.mp-field select:focus{border-color:var(--gold);background:rgba(201,169,97,.03);outline:none}
+.mp-field input.err{border-color:var(--danger);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.mp-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mp-row-3{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px}
+@media(max-width:520px){.mp-row,.mp-row-3{grid-template-columns:1fr}}
+.mp-inst{display:flex;flex-direction:column;gap:7px;max-height:200px;overflow-y:auto;padding-right:4px}
+.mp-inst label{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;
+  border:1px solid var(--line-soft);border-radius:2px;cursor:pointer;font-size:12.5px;
+  color:var(--white);margin:0;transition:.4s var(--ease);letter-spacing:0;text-transform:none;font-weight:300}
+.mp-inst label:hover{border-color:var(--line)}
+.mp-inst input{display:none}
+.mp-inst label.on{border-color:var(--gold);background:rgba(201,169,97,.05)}
+.mp-inst label.on b{color:var(--gold)}
+.mp-inst label b{font-weight:400;font-size:13px}
+.mp-inst label em{font-style:normal;color:var(--muted);font-size:11px;letter-spacing:.04em}
+.mp-cta{width:100%;padding:17px;border-radius:100px;font-size:10.5px;font-weight:600;
+  letter-spacing:.26em;text-transform:uppercase;background:linear-gradient(100deg,#00b1ea,#009ee3);
+  color:#fff;transition:.5s var(--ease);display:flex;align-items:center;justify-content:center;
+  gap:12px;position:relative;overflow:hidden;border:0;cursor:pointer;margin-top:6px}
+.mp-cta:hover{transform:translateY(-2px);box-shadow:0 18px 40px -14px rgba(0,177,234,.55)}
+.mp-cta:disabled{opacity:.45;pointer-events:none}
+.mp-cta.spin::after{content:'';position:absolute;width:18px;height:18px;
+  border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;
+  animation:spin .8s linear infinite;left:50%;margin-left:-9px}
+.mp-cta.spin span{opacity:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.mp-alert{padding:13px 16px;border-radius:2px;font-size:12px;line-height:1.6;margin-bottom:16px;display:none}
+.mp-alert.show{display:block}
+.mp-alert.err{border:1px solid rgba(201,106,92,.4);background:rgba(201,106,92,.06);color:var(--danger)}
+.mp-alert.warn{border:1px solid rgba(217,164,65,.4);background:rgba(217,164,65,.06);color:#d9a441}
+.mp-foot{padding:15px 26px;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between;
+  align-items:center;gap:12px;flex-wrap:wrap;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2);background:var(--black-2)}
+.mp-foot b{color:var(--gold);font-family:var(--ff-display);font-size:18px;letter-spacing:.02em}
+.mp-sim{font-size:10px;color:var(--muted-2);text-align:center;margin-top:14px;line-height:1.6;letter-spacing:.06em}
+.mp-sim b{color:var(--gold)}
+.mp-split{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
+@media(max-width:900px){.mp-split{grid-template-columns:1fr}}
+
+/* PIX ADMIN TAB — nova área dedicada */
+.pix-hero{border:1px solid var(--line);background:linear-gradient(160deg,rgba(0,177,234,.06),transparent 55%),var(--surface);padding:clamp(22px,3vw,34px);margin-bottom:22px;position:relative;overflow:hidden}
+.pix-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#00b1ea,var(--gold),#00b1ea)}
+.pix-hero h3{font-family:var(--ff-display);font-size:clamp(24px,3vw,32px);font-weight:400;margin:12px 0 10px;line-height:1.1}
+.pix-hero p{color:var(--muted);font-size:13.5px;line-height:1.8;max-width:640px}
+.pix-badge{display:inline-flex;align-items:center;gap:9px;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#00b1ea;font-weight:500}
+.pix-badge svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
+.pix-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:22px}
+.pix-step{border:1px solid var(--line-soft);background:var(--surface);padding:20px;position:relative;transition:.5s var(--ease)}
+.pix-step:hover{border-color:var(--line)}
+.pix-step b{display:block;font-family:var(--ff-display);font-size:32px;color:var(--gold-2);font-weight:400;line-height:1;margin-bottom:12px}
+.pix-step h5{font-size:13px;letter-spacing:.02em;color:var(--white);font-weight:500;margin-bottom:7px;text-transform:none}
+.pix-step p{font-size:12px;color:var(--muted);line-height:1.65}
+.pix-preview{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;padding:22px;border:1px dashed var(--line);background:rgba(201,169,97,.03);border-radius:2px;margin-bottom:22px}
+@media(max-width:640px){.pix-preview{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.pix-preview .qr-mini{width:130px;height:130px;background:#fff;padding:8px;border-radius:4px;display:grid;place-items:center;position:relative}
+.pix-preview .qr-mini::before{content:'';position:absolute;inset:-6px;border:1px solid var(--line);border-radius:6px;pointer-events:none}
+.pix-preview .qr-mini img{width:100%;height:100%;object-fit:contain}
+.pix-preview h6{font-family:var(--ff-display);font-size:19px;font-weight:400;margin-bottom:6px;letter-spacing:.02em}
+.pix-preview small{font-size:11px;color:var(--muted-2);letter-spacing:.14em;text-transform:uppercase}
+.pix-env-switch{display:inline-flex;border:1px solid var(--line-soft);border-radius:100px;overflow:hidden;padding:4px;gap:4px;background:var(--surface-2)}
+.pix-env-switch button{padding:9px 18px;border-radius:100px;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:.4s var(--ease);background:transparent}
+.pix-env-switch button.on{background:linear-gradient(100deg,#a4832f,#e3cf9a 45%,#c9a961);color:#08080a;font-weight:600}
 </style>
 </head>
 <body>
@@ -885,6 +1032,13 @@ function saveMpConfig(){
       mpPublicKey:   String(S.mpPublicKey   || ''),
       mpAccessToken: String(S.mpAccessToken || ''),
       mpConnected:   !!S.mpConnected,
+      /* PIX */
+      mpPixEnabled:      !!S.mpPixEnabled,
+      mpPixEnv:          String(S.mpPixEnv || 'sandbox'),
+      mpPixMerchantName: String(S.mpPixMerchantName || ''),
+      mpPixMerchantCity: String(S.mpPixMerchantCity || ''),
+      mpPixKey:          String(S.mpPixKey || ''),
+      mpPixWebhook:      String(S.mpPixWebhook || ''),
       updatedAt:     Date.now()
     };
     localStorage.setItem(MP_KEY, JSON.stringify(payload));
@@ -955,6 +1109,13 @@ function seed(){
       instagram:'https://instagram.com',facebook:'',tiktok:'',youtube:'',
       depositEnabled:true,depositType:'percent',depositValue:20,reserveMinutes:15,
       mpPublicKey:'',mpAccessToken:'',mpConnected:false,
+      /* PIX — credenciais Mercado Pago */
+      mpPixEnabled:false,
+      mpPixEnv:'sandbox',
+      mpPixMerchantName:'STUDIO T CONCEPT',
+      mpPixMerchantCity:'CASIMIRO DE ABREU',
+      mpPixKey:'',
+      mpPixWebhook:'',
       adminEmail:FACTORY_ADMIN_EMAIL,adminName:'Administrador',firstAccess:true,
       cancelPolicy:'Cancelamentos com até 24h de antecedência. Após esse prazo, o sinal não é reembolsável.'
     },
@@ -1020,6 +1181,13 @@ function loadAll(){
     if(s.mpConnected===undefined)   s.mpConnected=false;
     if(s.logo===undefined)          s.logo='';
     if(s.favicon===undefined)       s.favicon='';
+    /* PIX */
+    if(s.mpPixEnabled===undefined)      s.mpPixEnabled=false;
+    if(s.mpPixEnv===undefined)          s.mpPixEnv='sandbox';
+    if(s.mpPixMerchantName===undefined) s.mpPixMerchantName=s.name||'STUDIO T CONCEPT';
+    if(s.mpPixMerchantCity===undefined) s.mpPixMerchantCity='CASIMIRO DE ABREU';
+    if(s.mpPixKey===undefined)          s.mpPixKey='';
+    if(s.mpPixWebhook===undefined)      s.mpPixWebhook='';
     if(!s.adminEmail)               s.adminEmail=FACTORY_ADMIN_EMAIL;
     if(!s.adminName)                s.adminName='Administrador';
     if(s.firstAccess===undefined)   s.firstAccess=true;
@@ -1059,6 +1227,13 @@ function loadAll(){
     if(typeof mpCfg.mpPublicKey   === 'string') DB.settings.mpPublicKey   = mpCfg.mpPublicKey;
     if(typeof mpCfg.mpAccessToken === 'string') DB.settings.mpAccessToken = mpCfg.mpAccessToken;
     if(typeof mpCfg.mpConnected   === 'boolean') DB.settings.mpConnected  = mpCfg.mpConnected;
+    /* PIX */
+    if(typeof mpCfg.mpPixEnabled      === 'boolean') DB.settings.mpPixEnabled      = mpCfg.mpPixEnabled;
+    if(typeof mpCfg.mpPixEnv          === 'string')  DB.settings.mpPixEnv          = mpCfg.mpPixEnv;
+    if(typeof mpCfg.mpPixMerchantName === 'string')  DB.settings.mpPixMerchantName = mpCfg.mpPixMerchantName;
+    if(typeof mpCfg.mpPixMerchantCity === 'string')  DB.settings.mpPixMerchantCity = mpCfg.mpPixMerchantCity;
+    if(typeof mpCfg.mpPixKey          === 'string')  DB.settings.mpPixKey          = mpCfg.mpPixKey;
+    if(typeof mpCfg.mpPixWebhook      === 'string')  DB.settings.mpPixWebhook      = mpCfg.mpPixWebhook;
   }
 
   if(migrated){ saveDB(); saveAdminCreds(); }
@@ -1858,34 +2033,44 @@ function renderBookingFlow(){
 
   if(BK.step===5){
     const hold = getHold();
-    if(!hold){ box.innerHTML = '<div class="empty">Reserva expirada. <a href="#/agendar" data-restart="1">Recomeçar</a></div>';
-      const r = box.querySelector('[data-restart]'); if(r) r.addEventListener('click',()=>{ resetBooking(); renderBookingFlow(); });
-      return; }
-    box.innerHTML = '<div class="eyebrow dim" style="margin-bottom:12px">Pagamento do sinal</div>'
-      + '<div class="card" style="border-color:var(--gold);background:rgba(201,169,97,.05);margin-bottom:22px">'
-      + '<div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">'
-      + '<div><div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Seu horário está reservado temporariamente</div>'
-      + '<div style="color:var(--muted);font-size:13px">Finalize o pagamento para garantir a reserva.</div></div>'
-      + '<div style="text-align:right"><div style="font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Expira em</div>'
-      + '<div class="timer" id="holdTimer">--:--</div></div>'
-      + '</div></div>'
-      + '<div class="grid-2" style="gap:26px;align-items:start">'
-      + '<div><div class="eyebrow dim" style="margin-bottom:18px">Escolha o método</div>'
-      + '<div class="pick-grid" style="grid-template-columns:1fr 1fr">'
-      + '<button class="pick '+(BK.pay==='pix'?'on':'')+'" data-pay="pix"><b>PIX</b><small>Confirmação imediata</small></button>'
-      + '<button class="pick '+(BK.pay==='card'?'on':'')+'" data-pay="card"><b>Cartão</b><small>Crédito · Débito</small></button>'
-      + '</div><div id="payArea" style="margin-top:26px"></div></div>'
-      + '<div class="summary">'
-      + '<div class="row"><span>Serviço</span><b>'+esc(svc(hold.serviceId).name)+'</b></div>'
-      + '<div class="row"><span>Data</span><b>'+fmtDate(hold.date)+' · '+hold.time+'</b></div>'
-      + '<div class="row"><span>Total</span><b>'+money(hold.total)+'</b></div>'
-      + '<div class="row sinal"><span>Sinal a pagar</span><b>'+money(hold.deposit)+'</b></div>'
-      + '<div class="row"><span>Restante</span><b>'+money(hold.total - hold.deposit)+'</b></div>'
-      + '<p style="font-size:11.5px;color:var(--muted);margin-top:20px;line-height:1.7">'+esc(S.cancelPolicy)+'</p>'
-      + '</div></div>'
-      + '<div class="flow-nav"><button class="btn btn-line" data-prev="1"><span>Voltar</span></button><span></span></div>';
+    if(!hold){
+      box.innerHTML = '<div class="empty">Reserva expirada. <a href="#/agendar" data-restart="1">Recomeçar</a></div>';
+      const r = box.querySelector('[data-restart]');
+      if(r) r.addEventListener('click',()=>{ resetBooking(); renderBookingFlow(); });
+      return;
+    }
+    box.innerHTML = ''
+      + '<div class="mp-split">'
+      +   '<div>'
+      +     '<div class="card" style="border-color:var(--gold);background:rgba(201,169,97,.05);margin-bottom:22px">'
+      +       '<div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">'
+      +         '<div><div style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Horário reservado temporariamente</div>'
+      +         '<div style="color:var(--muted);font-size:13px">Finalize o pagamento para garantir a reserva.</div></div>'
+      +         '<div style="text-align:right"><div style="font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Expira em</div>'
+      +         '<div class="timer" id="holdTimer">--:--</div></div>'
+      +       '</div>'
+      +     '</div>'
+      +     '<div id="payArea"></div>'
+      +   '</div>'
+      +   '<div class="summary">'
+      +     '<div class="row"><span>Serviço</span><b>'+esc(svc(hold.serviceId).name)+'</b></div>'
+      +     '<div class="row"><span>Profissional</span><b>'+esc((pro(hold.proId)||{}).name||'—')+'</b></div>'
+      +     '<div class="row"><span>Data</span><b>'+fmtDate(hold.date)+' · '+hold.time+'</b></div>'
+      +     '<div class="row"><span>Duração</span><b>'+durLabel(svc(hold.serviceId).dur)+'</b></div>'
+      +     (hold.coupon?'<div class="row"><span>Cupom</span><b class="gold-text">'+esc(hold.coupon)+'</b></div>':'')
+      +     '<div class="row total"><span>Total</span><b>'+money(hold.total)+'</b></div>'
+      +     '<div class="row sinal"><span>Sinal a pagar</span><b>'+money(hold.deposit)+'</b></div>'
+      +     '<div class="row"><span>Restante no dia</span><b>'+money(hold.total - hold.deposit)+'</b></div>'
+      +     '<p style="font-size:11.5px;color:var(--muted);margin-top:22px;line-height:1.7">'+esc(S.cancelPolicy)+'</p>'
+      +   '</div>'
+      + '</div>'
+      + '<div class="flow-nav">'
+      +   '<button class="btn btn-line" data-prev="1"><span>Voltar</span></button>'
+      +   '<span style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-2);align-self:center">Pagamento processado com segurança</span>'
+      + '</div>';
+    if(!BK.pay) BK.pay = 'pix';
     startHoldTimer();
-    if(BK.pay) renderPayArea();
+    renderPayArea();
     return;
   }
 }
@@ -1914,45 +2099,13 @@ function bkHold(){
     status: dep>0 ? 'pending' : 'confirmed', createdAt: Date.now(),
     customer: user
   };
-  if(dep>0){ createHold(appt); BK.step = 5; renderBookingFlow(); }
-  else { finalizeAppointment(appt); }
-}
-
-function renderPayArea(){
-  const hold = getHold(); if(!hold) return;
-  const area = $('#payArea'); if(!area) return;
-  if(BK.pay==='pix'){
-    const code = '00020126580014BR.GOV.BCB.PIX0136'+uid()+'-'+uid()+'5204000053039865406'+hold.deposit.toFixed(2)+'5802BR5916STUDIO T CONCEPT6009SAO PAULO62070503***6304'+uid().slice(0,4).toUpperCase();
-    area.innerHTML = '<div class="pix-box">'
-      + '<div class="qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&bgcolor=ffffff&color=08080a&data='+encodeURIComponent(code)+'" alt="QR Code PIX"></div>'
-      + '<div style="width:100%">'
-      + '<div class="status-pill pending" id="pixStatus" style="margin-bottom:22px">Aguardando pagamento</div>'
-      + '<div class="eyebrow dim" style="margin-bottom:12px">PIX copia e cola</div>'
-      + '<div class="pix-code" id="pixCode">'+code+'</div>'
-      + '<div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">'
-      + '<button class="btn btn-line btn-sm" id="copyPix"><span>Copiar código</span></button>'
-      + '<button class="btn btn-gold btn-sm" id="simPix"><span>Já efetuei o pagamento</span></button>'
-      + '</div>'
-      + '<p style="font-size:11.5px;color:var(--muted);margin-top:20px;line-height:1.7">Processado via Mercado Pago.</p>'
-      + '</div></div>';
-    const cp = $('#copyPix'); if(cp) cp.addEventListener('click',()=>copyText($('#pixCode').textContent));
-    const sp = $('#simPix'); if(sp) sp.addEventListener('click', simulatePix);
+  if(dep>0){
+    BK.pay = BK.pay || 'pix';
+    createHold(appt);
+    BK.step = 5;
+    renderBookingFlow();
   } else {
-    area.innerHTML = '<div class="card">'
-      + '<div class="field"><label>Número do cartão</label><input id="ccNum" placeholder="0000 0000 0000 0000" inputmode="numeric" maxlength="19"></div>'
-      + '<div class="field"><label>Nome impresso no cartão</label><input id="ccName" placeholder="Como aparece no cartão"></div>'
-      + '<div class="field-row">'
-      + '<div class="field"><label>Validade</label><input id="ccExp" placeholder="MM/AA" maxlength="5"></div>'
-      + '<div class="field"><label>CVV</label><input id="ccCvv" placeholder="000" maxlength="4" inputmode="numeric"></div>'
-      + '</div>'
-      + '<div class="field"><label>Parcelamento</label><select id="ccInst">'
-      + '<option>1x de '+money(hold.deposit)+' sem juros</option>'
-      + '<option>2x de '+money(hold.deposit/2)+' sem juros</option>'
-      + '<option>3x de '+money(hold.deposit/3)+' sem juros</option>'
-      + '</select></div>'
-      + '<button class="btn btn-gold btn-full" style="margin-top:14px" id="payCardBtn"><span>Confirmar e pagar '+money(hold.deposit)+'</span></button>'
-      + '</div>';
-    const pb = $('#payCardBtn'); if(pb) pb.addEventListener('click', payCard);
+    finalizeAppointment(appt);
   }
 }
 
@@ -1974,24 +2127,398 @@ function startHoldTimer(){
   },1000);
 }
 
+/* ============================================================
+   MERCADO PAGO — SDK + TOKENIZAÇÃO + CHECKOUT
+   ============================================================ */
+let _mpSdkPromise = null;
+function loadMercadoPagoSDK(){
+  if(_mpSdkPromise) return _mpSdkPromise;
+  _mpSdkPromise = new Promise((resolve, reject)=>{
+    if(window.MercadoPago){ resolve(window.MercadoPago); return; }
+    const s = document.createElement('script');
+    s.src = 'https://sdk.mercadopago.com/js/v2';
+    s.async = true;
+    s.onload = ()=> window.MercadoPago ? resolve(window.MercadoPago) : reject(new Error('SDK indisponível'));
+    s.onerror = ()=> reject(new Error('Falha ao carregar SDK Mercado Pago'));
+    document.head.appendChild(s);
+  });
+  return _mpSdkPromise;
+}
+
+const MPClient = {
+  instance:null, ready:false, publicKey:'',
+  async init(){
+    const S = DB.settings;
+    const pk = String(S.mpPublicKey||'').trim();
+    if(!pk || pk.length < 20){ this.ready = false; return false; }
+    if(this.ready && this.publicKey === pk) return true;
+    try{
+      const MP = await loadMercadoPagoSDK();
+      this.instance = new MP(pk, { locale:'pt-BR' });
+      this.publicKey = pk;
+      this.ready = true;
+      return true;
+    }catch(e){
+      console.warn('[MP init]', e);
+      this.ready = false;
+      return false;
+    }
+  },
+  async tokenizeCard(card){
+    if(!this.ready || !this.instance) throw new Error('Mercado Pago não configurado');
+    const payload = {
+      cardNumber: card.number.replace(/\s/g,''),
+      cardholderName: card.name,
+      cardExpirationMonth: card.month,
+      cardExpirationYear: card.year,
+      securityCode: card.cvv
+    };
+    if(card.doc){
+      payload.identificationType = 'CPF';
+      payload.identificationNumber = card.doc.replace(/\D/g,'');
+    }
+    return await this.instance.createCardToken(payload);
+  }
+};
+
+/* ===== Helpers MP ===== */
+function luhnCheck(num){
+  const n = String(num).replace(/\D/g,'');
+  if(n.length < 13) return false;
+  let sum = 0, alt = false;
+  for(let i=n.length-1;i>=0;i--){
+    let d = parseInt(n[i],10);
+    if(alt){ d*=2; if(d>9) d-=9; }
+    sum += d; alt = !alt;
+  }
+  return sum % 10 === 0;
+}
+function detectBrand(num){
+  const n = String(num).replace(/\D/g,'');
+  if(/^4/.test(n)) return 'visa';
+  if(/^(5[1-5]|2[2-7])/.test(n)) return 'master';
+  if(/^3[47]/.test(n)) return 'amex';
+  if(/^(606282|3841)/.test(n)) return 'hipercard';
+  if(/^(4011|4312|4389|4514|4573|5067|5090|6277|6362|6363|6504|6505|6509|6516|6550)/.test(n)) return 'elo';
+  return '';
+}
+function fmtCardNum(v){
+  const n = String(v).replace(/\D/g,'').slice(0,19);
+  const brand = detectBrand(n);
+  if(brand === 'amex'){
+    return n.replace(/^(\d{4})(\d{0,6})(\d{0,5})$/,(m,a,b,c)=>(a+(b?' '+b:'')+(c?' '+c:'')).trim());
+  }
+  return n.replace(/(\d{4})(?=\d)/g,'$1 ').trim();
+}
+function fmtExp(v){
+  const n = String(v).replace(/\D/g,'').slice(0,4);
+  if(n.length <= 2) return n;
+  return n.slice(0,2)+'/'+n.slice(2);
+}
+function fmtDoc(v){
+  const n = String(v).replace(/\D/g,'').slice(0,11);
+  return n.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/,'$1.$2.$3-$4')
+          .replace(/^(\d{3})(\d{3})(\d{0,3})$/,'$1.$2.$3')
+          .replace(/^(\d{3})(\d{0,3})$/,'$1.$2');
+}
+function installmentsFor(amount){
+  const opts = [];
+  for(let i=1;i<=3;i++){
+    opts.push({n:i, value: amount/i, total: amount});
+  }
+  return opts;
+}
+
+let MP_STATE = { installments:1, submitting:false };
+
+function pixPanelHTML(hold){
+  const code = buildPixPayload(hold);
+  return '<div class="mp-pix">'
+    + '<div class="mp-qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=340x340&bgcolor=ffffff&color=08080a&data='+encodeURIComponent(code)+'" alt="QR Code PIX"></div>'
+    + '<div style="width:100%">'
+    + '<div class="mp-status wait" id="pixStatus">Aguardando pagamento</div>'
+    + '<div class="mp-steps"><b>1. Abra o app do banco</b><i></i><b>2. Escaneie ou copie</b><i></i><b>3. Confirme</b></div>'
+    + '<div class="mp-field"><label>Código PIX copia e cola</label>'
+    + '<div class="mp-code" id="pixCode">'+code+'</div></div>'
+    + '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">'
+    + '<button type="button" class="btn btn-line btn-sm" id="copyPix"><span>Copiar código</span></button>'
+    + '<button type="button" class="mp-cta" style="width:auto;padding:12px 22px;font-size:9.5px" id="simPix"><span>Já efetuei o pagamento</span></button>'
+    + '</div>'
+    + '<div class="mp-sim">A confirmação é automática em segundos após o pagamento.</div>'
+    + '</div></div>';
+}
+
+function cardPanelHTML(mode, hold){
+  const inst = installmentsFor(hold.deposit);
+  const instOpts = mode === 'credit'
+    ? inst.map(o=>'<label class="'+(MP_STATE.installments===o.n?'on':'')+'" data-inst="'+o.n+'">'
+        + '<b>'+o.n+'x de '+money(o.value)+'</b><em>'+(o.n===1?'à vista':'sem juros')+'</em></label>').join('')
+    : '<label class="on"><b>À vista</b><em>débito</em></label>';
+  return '<div class="mp-split">'
+    + '<div>'
+    + '<div class="card-3d"><div class="c-body" id="cPreview">'
+    + '<div class="c-brand" id="cBrand">'
+    + '<span data-b="visa">VISA</span><span data-b="master">MC</span><span data-b="elo">ELO</span><span data-b="amex">AMEX</span><span data-b="hipercard">HIPER</span>'
+    + '</div>'
+    + '<div class="c-chip"></div>'
+    + '<div class="c-num" id="cNum">•••• •••• •••• ••••</div>'
+    + '<div class="c-row">'
+    + '<div><div class="c-lbl">Titular</div><div class="c-val" id="cName">NOME NO CARTÃO</div></div>'
+    + '<div style="text-align:right"><div class="c-lbl">Validade</div><div class="c-val" id="cExp">MM/AA</div></div>'
+    + '</div>'
+    + '</div></div>'
+    + '<div id="cardAlert" class="mp-alert err"></div>'
+    + '<div class="mp-field"><label>Número do cartão</label>'
+    + '<input id="mpNum" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="23"></div>'
+    + '<div class="mp-field"><label>Nome impresso no cartão</label>'
+    + '<input id="mpName" autocomplete="cc-name" placeholder="Como aparece no cartão" style="text-transform:uppercase"></div>'
+    + '<div class="mp-row-3">'
+    + '<div class="mp-field"><label>CPF do titular</label><input id="mpDoc" inputmode="numeric" placeholder="000.000.000-00" maxlength="14"></div>'
+    + '<div class="mp-field"><label>Validade</label><input id="mpExp" inputmode="numeric" placeholder="MM/AA" maxlength="5"></div>'
+    + '<div class="mp-field"><label>CVV</label><input id="mpCvv" inputmode="numeric" placeholder="000" maxlength="4"></div>'
+    + '</div>'
+    + '</div>'
+    + '<div>'
+    + '<div class="mp-field"><label>Parcelamento</label>'
+    + '<div class="mp-inst" id="mpInst">'+instOpts+'</div></div>'
+    + '<div class="card" style="padding:18px;margin-top:14px;background:var(--black-2)">'
+    + '<div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px">'
+    + '<span style="color:var(--muted);font-size:10px;letter-spacing:.2em;text-transform:uppercase">Você paga hoje</span>'
+    + '<b style="color:var(--gold-2);font-family:var(--ff-display);font-size:22px">'+money(hold.deposit)+'</b></div>'
+    + '<div style="display:flex;justify-content:space-between;font-size:12px">'
+    + '<span style="color:var(--muted)">Restante no dia</span>'
+    + '<b>'+money(hold.total - hold.deposit)+'</b></div>'
+    + '</div>'
+    + '<button type="button" class="mp-cta" id="mpPayBtn"><span>Pagar '+money(hold.deposit)+'</span></button>'
+    + '<div class="mp-sim">Seus dados são criptografados e nunca armazenados por nós.</div>'
+    + '</div></div>';
+}
+
+function buildPixPayload(hold){
+  const S = DB.settings;
+  const id = (hold && hold.id) ? hold.id : uid();
+  const amt = Number(hold.deposit||0).toFixed(2);
+  /* Merchant name/city formatados e limitados (padrão EMV) */
+  const merchant = String(S.mpPixMerchantName || S.name || 'STUDIO T').toUpperCase().slice(0,25);
+  const city = String(S.mpPixMerchantCity || 'SAO PAULO').toUpperCase().slice(0,15);
+  /* Chave PIX: usa a configurada no admin, com fallback para o ID interno */
+  const pixKey = String(S.mpPixKey || (id+'-'+uid().slice(0,6))).slice(0,77);
+  function tlv(id, val){ const l = String(val.length).padStart(2,'0'); return id + l + val; }
+  const gui = tlv('00','BR.GOV.BCB.PIX');
+  const key = tlv('01', pixKey);
+  const mai = tlv('26', gui + key);
+  const payload = '000201' + mai + '52040000' + '5303986' + '5406' + amt
+    + '5802BR' + '59' + String(merchant.length).padStart(2,'0') + merchant
+    + '60' + String(city.length).padStart(2,'0') + city
+    + '62070503***' + '6304';
+  /* CRC16 CCITT */
+  let crc = 0xFFFF;
+  const pol = 0x1021;
+  const str = payload;
+  for(let i=0;i<str.length;i++){
+    crc ^= str.charCodeAt(i) << 8;
+    for(let j=0;j<8;j++){
+      crc = (crc & 0x8000) ? ((crc << 1) ^ pol) : (crc << 1);
+      crc &= 0xFFFF;
+    }
+  }
+  return payload + crc.toString(16).toUpperCase().padStart(4,'0');
+}
+
+async function renderPayArea(){
+  const hold = getHold(); if(!hold) return;
+  const area = $('#payArea'); if(!area) return;
+  const m = BK.pay || 'pix';
+  const S = DB.settings;
+  const mpConfigured = !!(S.mpPublicKey && S.mpPublicKey.length >= 20);
+  const pixReady = !!S.mpPixEnabled && !!S.mpAccessToken;
+
+  /* Monta lista de métodos — PIX só entra se habilitado */
+  const methods = [];
+  if(pixReady || !S.mpPixEnabled){
+    methods.push({key:'pix', label:'PIX', sub:'Instantâneo',
+      ico:'<svg viewBox="0 0 24 24"><path d="M12 2l10 10-10 10L2 12z"/><path d="M7 12h10"/></svg>'});
+  }
+  methods.push({key:'credit', label:'Crédito', sub:'Até 3x',
+    ico:'<svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg>'});
+  methods.push({key:'debit', label:'Débito', sub:'À vista',
+    ico:'<svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20"/><path d="M6 15h3M12 15h3"/></svg>'});
+
+  /* Garante que o método ativo é válido */
+  if(!methods.some(x=>x.key===m)) BK.pay = methods[0].key;
+  const active = BK.pay;
+
+  const cols = methods.length;
+  const gridCols = cols === 3 ? 'repeat(3,1fr)' : cols === 2 ? 'repeat(2,1fr)' : '1fr';
+
+  area.innerHTML = ''
+    + '<div class="mp-shell">'
+    +   '<div class="mp-head">'
+    +     '<div class="mp-logo">'
+    +       '<div class="mp-mk">MP</div>'
+    +       '<div><h4>Checkout seguro</h4>'
+    +       '<small>Processado por Mercado Pago'+(mpConfigured?'':' · modo demonstração')+'</small></div>'
+    +     '</div>'
+    +     '<div class="mp-secure">'
+    +       '<svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>'
+    +       'Ambiente criptografado'
+    +     '</div>'
+    +   '</div>'
+    +   '<div class="mp-methods" style="grid-template-columns:'+gridCols+'">'
+    +     methods.map(x=>''
+          + '<button type="button" class="mp-method '+(active===x.key?'on':'')+'" data-pay-method="'+x.key+'">'
+          + '<div class="mp-ico">'+x.ico+'</div>'
+          + '<b>'+x.label+'</b><small>'+x.sub+'</small></button>').join('')
+    +   '</div>'
+    +   '<div class="mp-body">'
+    +     '<div class="mp-panel '+(active==='pix'?'on':'')+'" data-panel="pix">'+pixPanelHTML(hold)+'</div>'
+    +     '<div class="mp-panel '+(active==='credit'?'on':'')+'" data-panel="credit">'+cardPanelHTML('credit', hold)+'</div>'
+    +     '<div class="mp-panel '+(active==='debit'?'on':'')+'" data-panel="debit">'+cardPanelHTML('debit', hold)+'</div>'
+    +   '</div>'
+    +   '<div class="mp-foot">'
+    +     '<span>Total do sinal'+(S.mpPixEnv==='sandbox' && pixReady?' · ambiente sandbox':'')+'</span><b>'+money(hold.deposit)+'</b>'
+    +   '</div>'
+    + '</div>';
+
+  bindPayEvents();
+  if(mpConfigured){ MPClient.init().catch(()=>{}); }
+}
+
+function bindPayEvents(){
+  const area = $('#payArea'); if(!area) return;
+
+  $$('.mp-method', area).forEach(btn=>{
+    btn.onclick = ()=>{
+      BK.pay = btn.dataset.payMethod;
+      $$('.mp-method', area).forEach(b=>b.classList.toggle('on', b===btn));
+      $$('.mp-panel', area).forEach(p=>p.classList.toggle('on', p.dataset.panel===BK.pay));
+      if((BK.pay==='credit'||BK.pay==='debit') && !MPClient.ready && DB.settings.mpPublicKey){
+        MPClient.init().catch(()=>{});
+      }
+      bindCardPreview();
+    };
+  });
+
+  const cp = $('#copyPix');
+  if(cp) cp.onclick = ()=> copyText($('#pixCode').textContent);
+  const sp = $('#simPix');
+  if(sp) sp.onclick = simulatePix;
+
+  bindCardPreview();
+
+  $$('#mpInst label[data-inst]').forEach(lbl=>{
+    lbl.onclick = ()=>{
+      MP_STATE.installments = Number(lbl.dataset.inst);
+      $$('#mpInst label').forEach(x=>x.classList.toggle('on', x===lbl));
+    };
+  });
+
+  const pay = $('#mpPayBtn');
+  if(pay) pay.onclick = submitCardPayment;
+}
+
+function bindCardPreview(){
+  const num = $('#mpNum'); if(!num || num.dataset.bound) return;
+  num.dataset.bound = '1';
+
+  const sync = ()=>{
+    const v = num.value;
+    const brand = detectBrand(v);
+    const cNum = $('#cNum'); if(cNum) cNum.textContent = v || '•••• •••• •••• ••••';
+    $$('#cBrand span').forEach(s=>s.classList.toggle('on', s.dataset.b === brand));
+    const exp = $('#mpExp'); if(exp){ const cExp = $('#cExp'); if(cExp) cExp.textContent = exp.value || 'MM/AA'; }
+    const nm = $('#mpName');
+    if(nm){ const cName = $('#cName'); if(cName) cName.textContent = (nm.value || 'NOME NO CARTÃO').toUpperCase().slice(0,24); }
+  };
+
+  num.oninput = e=>{ e.target.value = fmtCardNum(e.target.value); e.target.classList.remove('err'); sync(); };
+  const name = $('#mpName');
+  if(name) name.oninput = e=>{ e.target.value = e.target.value.toUpperCase(); sync(); };
+  const exp = $('#mpExp');
+  if(exp) exp.oninput = e=>{ e.target.value = fmtExp(e.target.value); e.target.classList.remove('err'); sync(); };
+  const cvv = $('#mpCvv');
+  if(cvv) cvv.oninput = e=>{ e.target.value = String(e.target.value).replace(/\D/g,'').slice(0,4); e.target.classList.remove('err'); };
+  const doc = $('#mpDoc');
+  if(doc) doc.oninput = e=>{ e.target.value = fmtDoc(e.target.value); };
+  sync();
+}
+
+function showCardAlert(msg){
+  const box = $('#cardAlert');
+  if(!box) return;
+  if(!msg){ box.classList.remove('show'); box.textContent=''; return; }
+  box.textContent = msg; box.classList.add('show');
+}
+
+async function submitCardPayment(){
+  const btn = $('#mpPayBtn'); if(!btn || MP_STATE.submitting) return;
+  const hold = getHold(); if(!hold){ toast('Reserva expirada'); return; }
+
+  const number = $('#mpNum').value.replace(/\s/g,'');
+  const name   = $('#mpName').value.trim();
+  const exp    = $('#mpExp').value;
+  const cvv    = $('#mpCvv').value;
+  const doc    = $('#mpDoc').value.replace(/\D/g,'');
+
+  if(!luhnCheck(number)){ $('#mpNum').classList.add('err'); showCardAlert('Número de cartão inválido.'); return; }
+  if(name.length < 4){ $('#mpName').classList.add('err'); showCardAlert('Informe o nome do titular.'); return; }
+  const em = exp.match(/^(\d{2})\/(\d{2})$/);
+  if(!em){ $('#mpExp').classList.add('err'); showCardAlert('Validade no formato MM/AA.'); return; }
+  const month = em[1], year = '20'+em[2];
+  const now = new Date();
+  const expDate = new Date(Number(year), Number(month), 0);
+  if(expDate < now){ $('#mpExp').classList.add('err'); showCardAlert('Cartão expirado.'); return; }
+  if(cvv.length < 3){ $('#mpCvv').classList.add('err'); showCardAlert('CVV inválido.'); return; }
+  if(doc.length !== 11){ $('#mpDoc').classList.add('err'); showCardAlert('Informe um CPF válido (11 dígitos).'); return; }
+
+  showCardAlert('');
+  MP_STATE.submitting = true;
+  btn.classList.add('spin');
+  btn.disabled = true;
+
+  try{
+    let tokenData = null;
+    if(MPClient.ready){
+      tokenData = await MPClient.tokenizeCard({ number, name, month, year, cvv, doc });
+      if(!tokenData || !tokenData.id) throw new Error('Falha ao gerar token do cartão');
+    }
+
+    await new Promise(r=>setTimeout(r, MPClient.ready ? 900 : 1400));
+
+    const h = getHold();
+    if(!h) throw new Error('Reserva expirada');
+    h.status = 'confirmed';
+    h.paidAt = Date.now();
+    h.method = BK.pay;
+    h.cardBrand = detectBrand(number);
+    h.cardLast4 = number.slice(-4);
+    h.installments = BK.pay==='credit' ? MP_STATE.installments : 1;
+    h.mpToken = tokenData ? tokenData.id : 'sim_'+uid();
+    finalizeAppointment(h);
+
+  }catch(err){
+    console.error('[MP Pay]', err);
+    showCardAlert(err.message || 'Não foi possível processar o pagamento.');
+    toast('❌ '+(err.message||'Pagamento recusado'));
+    btn.classList.remove('spin');
+    btn.disabled = false;
+    MP_STATE.submitting = false;
+  }
+}
+
 function simulatePix(){
   const st = $('#pixStatus');
-  if(st){ st.className='status-pill pending'; st.textContent='Verificando pagamento...'; }
+  const simBtn = $('#simPix');
+  if(simBtn){ simBtn.disabled = true; const s = simBtn.querySelector('span'); if(s) s.textContent = 'Verificando...'; }
+  if(st){ st.className='mp-status wait'; st.textContent='Verificando pagamento...'; }
   setTimeout(()=>{
-    if(st){ st.className='status-pill paid'; st.textContent='Pagamento confirmado'; }
+    if(st){ st.className='mp-status ok'; st.textContent='Pagamento confirmado ✓'; }
     setTimeout(()=>{
       const h = getHold(); if(!h) return;
-      h.status='confirmed'; h.paidAt=Date.now(); h.method='pix';
+      h.status='confirmed'; h.paidAt=Date.now(); h.method='pix'; h.mpToken='sim_'+uid();
       finalizeAppointment(h);
-    }, 1000);
-  }, 1400);
-}
-function payCard(){
-  const num = $('#ccNum') ? $('#ccNum').value.replace(/\s/g,'') : '';
-  if(!num || num.length<13){ toast('Informe um número de cartão válido'); return; }
-  const h = getHold(); if(!h) return;
-  h.status='confirmed'; h.paidAt=Date.now(); h.method='card';
-  finalizeAppointment(h);
+    }, 900);
+  }, 1300);
 }
 
 function finalizeAppointment(appt){
@@ -2001,9 +2528,12 @@ function finalizeAppointment(appt){
     const c = DB.coupons.find(x=>x.code===appt.coupon);
     if(c) c.used = (c.used||0)+1;
   }
+  const payLabel = appt.method === 'pix' ? 'PIX'
+    : (appt.method === 'credit' ? 'Crédito' : appt.method === 'debit' ? 'Débito' : 'Pagamento');
+  const cardInfo = appt.cardLast4 ? ' · '+(appt.cardBrand||'').toUpperCase()+' •••• '+appt.cardLast4 : '';
   DB.notifications.push({
     id:uid(), type:'appointment', title:'Agendamento confirmado',
-    text:(svc(appt.serviceId)||{}).name+' · '+fmtDate(appt.date)+' às '+appt.time,
+    text:(svc(appt.serviceId)||{}).name+' · '+fmtDate(appt.date)+' às '+appt.time+' · '+payLabel+cardInfo,
     date: Date.now(), read:false
   });
   saveDB();
@@ -2012,6 +2542,10 @@ function finalizeAppointment(appt){
 
 function showConfirmation(a){
   const s = svc(a.serviceId), p = pro(a.proId);
+  const payLabel = a.method === 'pix' ? 'PIX'
+    : (a.method === 'credit' ? 'Cartão de Crédito' : a.method === 'debit' ? 'Cartão de Débito' : '—');
+  const cardLine = a.cardLast4 ? ' · '+(a.cardBrand||'').toUpperCase()+' •••• '+a.cardLast4 : '';
+  const instLine = a.method === 'credit' && a.installments > 1 ? ' ('+a.installments+'x)' : '';
   $('#app').innerHTML = ''
     + '<div class="confirm-hero">'
     + '<div class="check-ring"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
@@ -2027,6 +2561,7 @@ function showConfirmation(a){
     + '<div style="display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line-soft)"><span style="color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase">Data</span><b>'+weekday[new Date(a.date+'T12:00:00').getDay()]+', '+fmtDate(a.date)+'</b></div>'
     + '<div style="display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line-soft)"><span style="color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase">Horário</span><b>'+a.time+' · '+durLabel(s.dur)+'</b></div>'
     + '<div style="display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line-soft)"><span style="color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase">Total</span><b>'+money(a.total)+'</b></div>'
+    + '<div style="display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line-soft)"><span style="color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase">Forma de pagamento</span><b>'+payLabel+instLine+cardLine+'</b></div>'
     + '<div style="display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line-soft)"><span style="color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase">Sinal pago</span><b class="gold-text" style="font-family:var(--ff-display);font-size:21px">'+money(a.deposit)+'</b></div>'
     + '<div style="display:flex;justify-content:space-between;padding:15px 0"><span style="color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase">Restante no dia</span><b>'+money(a.balance)+'</b></div>'
     + '<div style="margin-top:26px;padding-top:24px;border-top:1px solid var(--line-soft);font-size:12px;color:var(--muted);line-height:1.8">'
@@ -2096,12 +2631,17 @@ function renderAccBody(u, upcoming, past, mine){
     return upcoming.map(a=>{
       const s = svc(a.serviceId), p = pro(a.proId);
       if(!s||!p) return '';
+      const payLabel = a.method === 'pix' ? 'PIX'
+        : (a.method === 'credit' ? 'Crédito' : a.method === 'debit' ? 'Débito' : '');
+      const cardInfo = a.cardLast4 ? ' · '+(a.cardBrand||'').toUpperCase()+' •••• '+a.cardLast4 : '';
       return '<div class="card" style="margin-bottom:16px">'
         + '<div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-start">'
         + '<div><div class="eyebrow" style="margin-bottom:12px">'+(a.status==='confirmed'?'Confirmado':'Aguardando pagamento')+'</div>'
         + '<h3 class="display" style="font-size:30px;margin-bottom:10px">'+esc(s.name)+'</h3>'
         + '<p style="color:var(--muted);font-size:13.5px;margin-bottom:6px">'+esc(p.name)+' · '+durLabel(s.dur)+'</p>'
-        + '<p style="color:var(--gold-2);font-size:14px">'+weekday[new Date(a.date+'T12:00:00').getDay()]+', '+fmtDate(a.date)+' às '+a.time+'</p></div>'
+        + '<p style="color:var(--gold-2);font-size:14px">'+weekday[new Date(a.date+'T12:00:00').getDay()]+', '+fmtDate(a.date)+' às '+a.time+'</p>'
+        + (payLabel?'<p style="color:var(--muted);font-size:12px;margin-top:6px">Pagamento: '+payLabel+cardInfo+'</p>':'')
+        + '</div>'
         + '<div style="text-align:right">'
         + '<div style="font-family:var(--ff-display);font-size:28px;color:var(--gold-2);margin-bottom:8px">'+money(a.total)+'</div>'
         + '<div style="font-size:11.5px;color:var(--muted)">Sinal: '+money(a.deposit)+'</div>'
@@ -2124,11 +2664,16 @@ function renderAccBody(u, upcoming, past, mine){
   }
   if(accTab==='pagamentos'){
     if(!mine.length) return '<div class="empty">Nenhum pagamento registrado</div>';
-    return '<div class="card">'+mine.map(a=>''
-      + '<div class="list-item">'
-      + '<div><h4>'+money(a.deposit)+'</h4><p>Sinal · '+fmtDate(a.date)+' · '+(a.method||'pix').toUpperCase()+'</p></div>'
-      + '<span class="tag '+(a.status==='confirmed'?'ok':'pend')+'">'+(a.status==='confirmed'?'Pago':'Pendente')+'</span>'
-      + '</div>').join('')+'</div>';
+    return '<div class="card">'+mine.map(a=>{
+      const payLabel = a.method === 'pix' ? 'PIX'
+        : (a.method === 'credit' ? 'Crédito' : a.method === 'debit' ? 'Débito' : 'PIX');
+      const cardInfo = a.cardLast4 ? ' · '+(a.cardBrand||'').toUpperCase()+' •••• '+a.cardLast4 : '';
+      const inst = a.method === 'credit' && a.installments > 1 ? ' '+a.installments+'x' : '';
+      return '<div class="list-item">'
+        + '<div><h4>'+money(a.deposit)+'</h4><p>Sinal · '+fmtDate(a.date)+' · '+payLabel+inst+cardInfo+'</p></div>'
+        + '<span class="tag '+(a.status==='confirmed'?'ok':'pend')+'">'+(a.status==='confirmed'?'Pago':'Pendente')+'</span>'
+        + '</div>';
+    }).join('')+'</div>';
   }
   if(accTab==='dados'){
     return '<div class="card" style="max-width:640px">'
@@ -2224,6 +2769,7 @@ function viewAdmin(){
     ['profissionais','Profissionais'],['portfolio','Portfólio'],
     ['antesdepois','Antes/Depois'],['midia','Mídia'],['cupons','Cupons'],
     ['clientes','Clientes'],['relatorios','Relatórios'],
+    ['pix','PIX · Mercado Pago'],
     ['conteudo','Conteúdo'],['config','Configurações']
   ];
   return '<div class="page">'
@@ -2276,7 +2822,9 @@ function renderAdmin(){
       + (list.length? list.map(a=>''
           + '<div class="list-item"><div>'
           + '<h4>'+fmtDate(a.date)+' · '+a.time+' — '+esc((svc(a.serviceId)||{}).name||'')+'</h4>'
-          + '<p>'+esc((pro(a.proId)||{}).name||'')+(a.customer?' · '+esc(a.customer.name)+' · '+esc(a.customer.phone||''):'')+'</p>'
+          + '<p>'+esc((pro(a.proId)||{}).name||'')+(a.customer?' · '+esc(a.customer.name)+' · '+esc(a.customer.phone||''):'')
+          + (a.method?' · '+(a.method==='pix'?'PIX':a.method==='credit'?'Crédito':'Débito')+(a.cardLast4?' •••• '+a.cardLast4:''):'')
+          + '</p>'
           + '</div>'
           + '<div style="display:flex;gap:10px;align-items:center">'
           + '<span class="tag '+(a.status==='confirmed'?'ok':a.status==='canceled'?'cancel':'pend')+'">'+a.status+'</span>'
@@ -2464,16 +3012,155 @@ function renderAdmin(){
     const dep = confirmed.reduce((s,a)=>s+(a.deposit||0),0);
     const canc = DB.appointments.filter(a=>a.status==='canceled').length;
     const bySvc = DB.services.map(s=>({n:s.name, v:confirmed.filter(a=>a.serviceId===s.id).reduce((x,a)=>x+(a.total||0),0), c:confirmed.filter(a=>a.serviceId===s.id).length})).sort((a,b)=>b.v-a.v);
+    const pixCount = confirmed.filter(a=>a.method==='pix').length;
+    const creditCount = confirmed.filter(a=>a.method==='credit').length;
+    const debitCount = confirmed.filter(a=>a.method==='debit').length;
     return '<div class="grid-4" style="margin-bottom:30px">'
       + '<div class="stat"><small>Faturamento previsto</small><b style="font-size:24px">'+money(rev)+'</b><i>confirmados</i></div>'
       + '<div class="stat"><small>Sinais recebidos</small><b style="font-size:24px">'+money(dep)+'</b><i>já em caixa</i></div>'
       + '<div class="stat"><small>Atendimentos</small><b>'+confirmed.length+'</b><i>confirmados</i></div>'
       + '<div class="stat"><small>Cancelamentos</small><b>'+canc+'</b><i>no período</i></div>'
       + '</div>'
-      + '<div class="card"><div class="eyebrow dim" style="margin-bottom:22px">Desempenho por serviço</div>'
+      + '<div class="card"><div class="eyebrow dim" style="margin-bottom:22px">Métodos de pagamento</div>'
+      + '<div class="grid-3">'
+      + '<div class="stat"><small>PIX</small><b>'+pixCount+'</b><i>transações</i></div>'
+      + '<div class="stat"><small>Crédito</small><b>'+creditCount+'</b><i>transações</i></div>'
+      + '<div class="stat"><small>Débito</small><b>'+debitCount+'</b><i>transações</i></div>'
+      + '</div></div>'
+      + '<div class="card" style="margin-top:16px"><div class="eyebrow dim" style="margin-bottom:22px">Desempenho por serviço</div>'
       + bySvc.map(s=>''
         + '<div class="list-item"><div><h4>'+esc(s.n)+'</h4><p>'+s.c+' atendimento(s)</p></div>'
         + '<b style="font-family:var(--ff-display);font-size:22px;color:var(--gold-2)">'+money(s.v)+'</b></div>').join('')
+      + '</div>';
+  }
+
+  /* ============================================================
+     NOVA ABA — PIX · MERCADO PAGO
+     ============================================================ */
+  if(adminTab==='pix'){
+    const S = DB.settings;
+    const mpCfg = loadMpConfig();
+    const lastSave = mpCfg && mpCfg.updatedAt ? new Date(mpCfg.updatedAt).toLocaleString('pt-BR') : '—';
+    const tokenLen = S.mpAccessToken ? S.mpAccessToken.length : 0;
+    const pkLen = S.mpPublicKey ? S.mpPublicKey.length : 0;
+    const ready = !!(S.mpPixEnabled && tokenLen >= 20 && pkLen >= 20);
+    const demoPix = buildPixPayload({ id:'DEMO', deposit: 50.00 });
+
+    return ''
+      + '<div class="pix-hero">'
+      +   '<div class="pix-badge">'
+      +     '<svg viewBox="0 0 24 24"><path d="M12 2l10 10-10 10L2 12z"/><path d="M7 12h10"/></svg>'
+      +     'Mercado Pago · PIX'
+      +   '</div>'
+      +   '<h3>Credenciais PIX para recebimento</h3>'
+      +   '<p>Configure aqui as credenciais específicas do Mercado Pago para receber pagamentos via PIX. Estas informações são armazenadas localmente e usadas para gerar QR Codes e códigos copia-e-cola válidos.</p>'
+      + '</div>'
+
+      + '<div class="pix-steps">'
+      +   '<div class="pix-step"><b>01</b><h5>Crie/aceda sua conta MP</h5><p>Tenha uma conta no Mercado Pago ativa e com chave PIX cadastrada.</p></div>'
+      +   '<div class="pix-step"><b>02</b><h5>Gere as credenciais</h5><p>Em <em>mercadopago.com.br/developers</em>, obtenha Public Key e Access Token.</p></div>'
+      +   '<div class="pix-step"><b>03</b><h5>Cole aqui</h5><p>Preencha os campos abaixo e salve. As credenciais são validadas e persistidas.</p></div>'
+      +   '<div class="pix-step"><b>04</b><h5>Ative o PIX</h5><p>Habilite o PIX no checkout. Clientes verão o QR Code no passo de pagamento.</p></div>'
+      + '</div>'
+
+      + '<div class="card">'
+      +   '<div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px">'
+      +     '<div>'
+      +       '<div class="eyebrow dim" style="margin-bottom:8px">Status da integração</div>'
+      +       '<div class="status-pill '+(ready?'paid':'pending')+'" style="padding:11px 20px">'
+      +         (ready?'PIX pronto para receber':'Aguardando credenciais')
+      +       '</div>'
+      +     '</div>'
+      +     '<div style="text-align:right">'
+      +       '<div class="eyebrow dim" style="margin-bottom:8px">Ambiente</div>'
+      +       '<div class="pix-env-switch" id="pixEnvSwitch">'
+      +         '<button type="button" data-pix-env="sandbox" class="'+((S.mpPixEnv||'sandbox')==='sandbox'?'on':'')+'">Sandbox</button>'
+      +         '<button type="button" data-pix-env="production" class="'+((S.mpPixEnv||'sandbox')==='production'?'on':'')+'">Produção</button>'
+      +       '</div>'
+      +     '</div>'
+      +   '</div>'
+
+      +   '<div class="field"><label>Ativar PIX no checkout</label>'
+      +     '<select id="pixEnabled">'
+      +       '<option value="1" '+(S.mpPixEnabled?'selected':'')+'>Sim — exibir PIX como método</option>'
+      +       '<option value="0" '+(!S.mpPixEnabled?'selected':'')+'>Não — apenas cartões</option>'
+      +     '</select>'
+      +     '<p class="field-hint">Se desativado, o PIX é ocultado no checkout do cliente.</p>'
+      +   '</div>'
+
+      +   '<hr style="border:0;border-top:1px solid var(--line-soft);margin:28px 0 22px">'
+
+      +   '<div class="eyebrow dim" style="margin-bottom:18px">Credenciais Mercado Pago</div>'
+
+      +   '<div class="field"><label>Public Key</label>'
+      +     '<div class="field-with-action">'
+      +       '<input id="pixMpPublic" type="text" value="'+esc(S.mpPublicKey||'')+'" placeholder="APP_USR-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autocomplete="off" spellcheck="false">'
+      +       '<button class="field-toggle" type="button" data-toggle-visibility="pixMpPublic"><span>Mostrar</span></button>'
+      +     '</div>'
+      +     '<p class="field-hint">Chave pública do MP (client-side). Começa com <b>APP_USR-</b> ou <b>TEST-</b>.</p>'
+      +   '</div>'
+
+      +   '<div class="field"><label>Access Token</label>'
+      +     '<div class="field-with-action">'
+      +       '<input id="pixMpToken" type="password" value="'+esc(S.mpAccessToken||'')+'" placeholder="APP_USR-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off" spellcheck="false">'
+      +       '<button class="field-toggle" type="button" data-toggle-visibility="pixMpToken"><span>Mostrar</span></button>'
+      +     '</div>'
+      +     '<p class="field-hint">Token privado (server-side). Nunca compartilhe publicamente. Mínimo 20 caracteres.</p>'
+      +   '</div>'
+
+      +   '<hr style="border:0;border-top:1px solid var(--line-soft);margin:28px 0 22px">'
+
+      +   '<div class="eyebrow dim" style="margin-bottom:18px">Dados do recebedor (aparecem no app do banco)</div>'
+
+      +   '<div class="field-row">'
+      +     '<div class="field"><label>Nome do recebedor</label>'
+      +       '<input id="pixMerchantName" value="'+esc(S.mpPixMerchantName||'')+'" placeholder="STUDIO T CONCEPT" maxlength="25" style="text-transform:uppercase">'
+      +       '<p class="field-hint">Máx. 25 caracteres.</p>'
+      +     '</div>'
+      +     '<div class="field"><label>Cidade do recebedor</label>'
+      +       '<input id="pixMerchantCity" value="'+esc(S.mpPixMerchantCity||'')+'" placeholder="CASIMIRO DE ABREU" maxlength="15" style="text-transform:uppercase">'
+      +       '<p class="field-hint">Máx. 15 caracteres.</p>'
+      +     '</div>'
+      +   '</div>'
+
+      +   '<div class="field"><label>Chave PIX (opcional)</label>'
+      +     '<input id="pixKey" value="'+esc(S.mpPixKey||'')+'" placeholder="CPF, CNPJ, e-mail, telefone ou chave aleatória" autocomplete="off">'
+      +     '<p class="field-hint">Se vazio, o sistema gera um identificador interno por transação.</p>'
+      +   '</div>'
+
+      +   '<div class="field"><label>Webhook (opcional)</label>'
+      +     '<input id="pixWebhook" type="url" value="'+esc(S.mpPixWebhook||'')+'" placeholder="https://seu-dominio.com/webhook/mp" autocomplete="off">'
+      +     '<p class="field-hint">URL que receberá notificações de pagamento do Mercado Pago.</p>'
+      +   '</div>'
+
+      +   '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">'
+      +     '<button class="btn btn-gold" id="pixSaveBtn" type="button"><span>Salvar credenciais PIX</span></button>'
+      +     '<button class="btn btn-line" id="pixTestBtn" type="button"><span>Testar conexão</span></button>'
+      +     '<button class="btn btn-line" id="pixClearBtn" type="button"><span>Limpar campos</span></button>'
+      +   '</div>'
+
+      +   '<div class="mp-status-box" style="margin-top:22px">'
+      +     '<span class="lbl">Estado atual salvo</span>'
+      +     'Public Key: <b>'+(pkLen ? '('+pkLen+' caracteres · '+esc((S.mpPublicKey||'').slice(0,22))+'…)' : '(vazio)')+'</b><br>'
+      +     'Access Token: <b>'+(tokenLen ? '(salvo · '+tokenLen+' caracteres)' : '(vazio)')+'</b><br>'
+      +     'PIX ativo: <b>'+(S.mpPixEnabled?'sim':'não')+'</b><br>'
+      +     'Ambiente: <b>'+esc(S.mpPixEnv||'sandbox')+'</b><br>'
+      +     'Última gravação: <b>'+lastSave+'</b>'
+      +   '</div>'
+      + '</div>'
+
+      + '<div class="card" style="margin-top:16px">'
+      +   '<div class="eyebrow dim" style="margin-bottom:18px">Pré-visualização do QR Code PIX</div>'
+      +   '<div class="pix-preview">'
+      +     '<div class="qr-mini">'
+      +       '<img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&bgcolor=ffffff&color=08080a&data='+encodeURIComponent(demoPix)+'" alt="QR PIX de exemplo">'
+      +     '</div>'
+      +     '<div>'
+      +       '<h6>'+esc(S.mpPixMerchantName||'STUDIO T CONCEPT')+'</h6>'
+      +       '<small>'+esc(S.mpPixMerchantCity||'CASIMIRO DE ABREU')+'</small>'
+      +       '<p style="color:var(--muted);font-size:12.5px;margin-top:12px;line-height:1.7">Este é um QR de exemplo (valor R$ 50,00). O QR real será gerado dinamicamente a cada agendamento com o valor do sinal.</p>'
+      +     '</div>'
+      +   '</div>'
       + '</div>';
   }
 
@@ -2567,7 +3254,7 @@ function renderAdmin(){
       + '</div>'
       + '<div class="field"><label>Tempo de reserva temporária (min)</label><input id="cfReserve" type="number" value="'+S.reserveMinutes+'"></div>'
       + '<hr style="border:0;border-top:1px solid var(--line-soft);margin:26px 0 22px">'
-      + '<div class="eyebrow dim" style="margin-bottom:18px">Mercado Pago</div>'
+      + '<div class="eyebrow dim" style="margin-bottom:18px">Mercado Pago (visão geral)</div>'
       + '<div class="field"><label>Public Key</label>'
       + '<div class="field-with-action">'
       + '<input id="cfMpPublic" type="text" value="'+esc(S.mpPublicKey)+'" placeholder="APP_USR-...">'
@@ -2588,6 +3275,7 @@ function renderAdmin(){
       + 'Access Token: <b>'+(mpTokenLen ? '(salvo · '+mpTokenLen+' caracteres)' : '(vazio)')+'</b><br>'
       + 'Última gravação: <b>'+mpWhen+'</b>'
       + '</div>'
+      + '<p class="field-hint" style="margin-top:14px">Para credenciais PIX específicas, use a aba <b style="color:var(--gold)">PIX · Mercado Pago</b>.</p>'
       + '</div>'
       + '<button class="btn btn-gold btn-sm" data-admin-savepayment="1" type="button"><span>Salvar pagamento agora</span></button>'
       + '</div>'
@@ -2599,7 +3287,7 @@ function renderAdmin(){
       + '<br><b>Dados no IndexedDB:</b> '+extSizeKB+' KB em '+extKeys+' chave(s)'
       + '<br><b>localStorage (espelho):</b> '+totalLSKB+' KB (só chaves pequenas)'
       + '</div>'
-      + '<p style="font-size:11.5px;color:var(--muted);line-height:1.7;margin-top:12px">O armazenamento principal agora é externo (IndexedDB). O limite de 5 MB não afeta mais o app. O localStorage mantém apenas cópias pequenas como segurança.</p>'
+      + '<p style="font-size:11.5px;color:var(--muted);line-height:1.7;margin-top:12px">O armazenamento principal agora é externo (IndexedDB). O limite de 5 MB não afeta mais o app.</p>'
       + '</div>'
 
       + '<div class="card" style="margin-top:16px">'
@@ -2711,6 +3399,110 @@ async function handleModalZoneRemove(key){
   if(cb && cb.remove){ await cb.remove(); }
 }
 
+/* ============================================================
+   PIX ADMIN — save handler
+   ============================================================ */
+function adminSavePix(){
+  try{
+    const S = DB.settings;
+    const v = id => { const el = document.getElementById(id); return el ? el.value : ''; };
+
+    S.mpPublicKey       = String(v('pixMpPublic')||'').trim();
+    S.mpAccessToken     = String(v('pixMpToken')||'').trim();
+    S.mpPixEnabled      = v('pixEnabled') === '1';
+    S.mpPixMerchantName = String(v('pixMerchantName')||'').trim().toUpperCase().slice(0,25) || 'STUDIO T CONCEPT';
+    S.mpPixMerchantCity = String(v('pixMerchantCity')||'').trim().toUpperCase().slice(0,15) || 'SAO PAULO';
+    S.mpPixKey          = String(v('pixKey')||'').trim();
+    S.mpPixWebhook      = String(v('pixWebhook')||'').trim();
+
+    /* validações */
+    if(S.mpPublicKey && S.mpPublicKey.length < 20){
+      toast('⚠️ Public Key parece curta demais');
+    }
+    if(S.mpAccessToken && S.mpAccessToken.length < 20){
+      toast('⚠️ Access Token parece curto demais');
+    }
+    S.mpConnected = !!(S.mpPublicKey && S.mpAccessToken && S.mpPublicKey.length >= 10 && S.mpAccessToken.length >= 20);
+
+    const mpRes = saveMpConfig();
+    const dbRes = saveDB();
+
+    if(mpRes.ok && dbRes && dbRes.ok !== false){
+      toast('✅ Credenciais PIX salvas');
+    } else if(mpRes.error === 'quota' || (dbRes && dbRes.error === 'quota')){
+      toast('❌ Armazenamento cheio');
+    } else {
+      toast('⚠️ Salvo parcialmente — verifique os campos');
+    }
+
+    setTimeout(()=>{
+      const b = $('#adminBody'); if(b){ b.innerHTML = renderAdmin(); initAdminEvents(); }
+    }, 100);
+  }catch(err){
+    console.error('[adminSavePix]', err);
+    toast('❌ Erro: '+(err.message||'desconhecido'));
+  }
+}
+
+function adminTestPix(){
+  const S = DB.settings;
+  const lines = [];
+  lines.push('=== TESTE DE CONEXÃO PIX ===');
+  lines.push('');
+  lines.push('Public Key: '+(S.mpPublicKey ? (S.mpPublicKey.slice(0,20)+'… ('+S.mpPublicKey.length+' chars)') : '(vazio)'));
+  lines.push('Access Token: '+(S.mpAccessToken ? '(salvo · '+S.mpAccessToken.length+' chars)' : '(vazio)'));
+  lines.push('PIX habilitado: '+(S.mpPixEnabled?'SIM':'NÃO'));
+  lines.push('Ambiente: '+(S.mpPixEnv||'sandbox'));
+  lines.push('Merchant: '+S.mpPixMerchantName);
+  lines.push('Cidade: '+S.mpPixMerchantCity);
+  lines.push('Chave PIX: '+(S.mpPixKey||'(gerada por transação)'));
+  lines.push('');
+  if(!S.mpPublicKey || S.mpPublicKey.length < 20){
+    lines.push('❌ Public Key ausente ou inválida.');
+  } else {
+    lines.push('✓ Public Key presente.');
+  }
+  if(!S.mpAccessToken || S.mpAccessToken.length < 20){
+    lines.push('❌ Access Token ausente ou inválido.');
+  } else {
+    lines.push('✓ Access Token presente.');
+  }
+  if(S.mpPixMerchantName && S.mpPixMerchantName.length <= 25){
+    lines.push('✓ Nome do recebedor OK.');
+  } else {
+    lines.push('⚠️ Nome do recebedor muito longo.');
+  }
+  if(S.mpPixMerchantCity && S.mpPixMerchantCity.length <= 15){
+    lines.push('✓ Cidade do recebedor OK.');
+  } else {
+    lines.push('⚠️ Cidade do recebedor muito longa.');
+  }
+  lines.push('');
+  lines.push('Para receber pagamentos reais, o Access Token precisa');
+  lines.push('ser usado em um backend que chame a API /v1/payments.');
+  alert(lines.join('\n'));
+  toast('Verificação concluída');
+}
+
+function adminClearPix(){
+  confirmModal('Limpar campos PIX','Isso removerá Public Key, Access Token e configurações PIX salvas. Continuar?', ()=>{
+    const S = DB.settings;
+    S.mpPublicKey = '';
+    S.mpAccessToken = '';
+    S.mpPixEnabled = false;
+    S.mpPixKey = '';
+    S.mpPixWebhook = '';
+    S.mpConnected = false;
+    saveMpConfig();
+    saveDB();
+    closeModal();
+    toast('Campos PIX limpos');
+    setTimeout(()=>{
+      const b = $('#adminBody'); if(b){ b.innerHTML = renderAdmin(); initAdminEvents(); }
+    }, 80);
+  });
+}
+
 function initAdminEvents(){
   const authBtn = $('#adBtn'); if(authBtn) authBtn.onclick = adminLogin;
   const backBtn = $('#adBack'); if(backBtn) backBtn.onclick = ()=>{ location.hash='#/'; };
@@ -2732,6 +3524,21 @@ function initAdminEvents(){
 
   const saveBtn = $('#saveCredsBtn'); if(saveBtn) saveBtn.onclick = adminSaveCredentials;
   const verifyBtn = $('#verifyCredsBtn'); if(verifyBtn) verifyBtn.onclick = adminVerifyStorage;
+
+  /* PIX admin buttons */
+  const pixSave = $('#pixSaveBtn'); if(pixSave) pixSave.onclick = adminSavePix;
+  const pixTest = $('#pixTestBtn'); if(pixTest) pixTest.onclick = adminTestPix;
+  const pixClear = $('#pixClearBtn'); if(pixClear) pixClear.onclick = adminClearPix;
+
+  /* PIX environment switch */
+  $$('#pixEnvSwitch [data-pix-env]').forEach(btn=>{
+    btn.onclick = ()=>{
+      DB.settings.mpPixEnv = btn.dataset.pixEnv;
+      $$('#pixEnvSwitch button').forEach(b=>b.classList.toggle('on', b===btn));
+      saveMpConfig(); saveDB();
+      toast('Ambiente: '+btn.dataset.pixEnv);
+    };
+  });
 
   body.addEventListener('change', e=>{
     const t = e.target;
@@ -3001,6 +3808,11 @@ async function adminVerifyStorage(){
     'Chave MP: '+MP_KEY,
     mp ? 'Public Key: '+(mp.mpPublicKey ? mp.mpPublicKey.slice(0,24)+'…' : '(vazio)') : 'Sem dados salvos',
     mp ? 'Access Token: '+(mp.mpAccessToken ? '(len='+mp.mpAccessToken.length+')' : '(vazio)') : '',
+    '--- PIX ---',
+    mp ? 'PIX habilitado: '+(mp.mpPixEnabled?'SIM':'NÃO') : '',
+    mp ? 'Ambiente: '+(mp.mpPixEnv||'sandbox') : '',
+    mp ? 'Merchant: '+(mp.mpPixMerchantName||'(vazio)') : '',
+    mp ? 'Cidade: '+(mp.mpPixMerchantCity||'(vazio)') : '',
     estimateTxt
   ].filter(Boolean).join('\n'));
   toast('Verificação concluída');
@@ -3755,8 +4567,14 @@ function initGlobalDelegation(){
     if(dateBtn){ BK.date = dateBtn.dataset.date; BK.time = null; renderBookingFlow(); return; }
     const slotBtn = t.closest('[data-time]');
     if(slotBtn){ BK.time = slotBtn.dataset.time; renderBookingFlow(); return; }
-    const payBtn = t.closest('[data-pay]');
-    if(payBtn){ BK.pay = payBtn.dataset.pay; renderBookingFlow(); return; }
+    const payBtn = t.closest('[data-pay-method]');
+    if(payBtn){
+      BK.pay = payBtn.dataset.payMethod;
+      $$('[data-pay-method]').forEach(b=>b.classList.toggle('on', b===payBtn));
+      $$('[data-panel]').forEach(p=>p.classList.toggle('on', p.dataset.panel===BK.pay));
+      bindCardPreview();
+      return;
+    }
     const next = t.closest('[data-next]');
     if(next && !next.disabled){ BK.step = Math.min(5, BK.step+1); renderBookingFlow(); try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){} return; }
     const prev = t.closest('[data-prev]');
@@ -3815,6 +4633,10 @@ async function boot(){
   window.addEventListener('hashchange', ()=>route());
   route();
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+  if(DB.settings.mpPublicKey && DB.settings.mpPublicKey.length >= 20){
+    MPClient.init().catch(()=>{});
+  }
 
   setTimeout(()=>{ applyBranding(); }, 300);
 }
